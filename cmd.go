@@ -72,5 +72,13 @@ func Durations(names []string, value time.Duration, usage string) *time.Duration
 	return CommandLine.Durations(names, value, usage)
 }
 
-var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = BoolVars, Bools, IntVars, Ints, Int64Vars, Ints64, UintVars, Uints,
-	Uint64Vars, Uints64, Float64Vars, Floats64, StringVars, Strings, DurationVars, Durations
+func Parse() {
+	_ = CommandLine.Parse(os.Args[1:])
+}
+
+func Parsed() bool {
+	return CommandLine.Parsed()
+}
+
+var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = BoolVars, Bools, IntVars, Ints, Int64Vars, Ints64, UintVars,
+	Uints, Uint64Vars, Uints64, Float64Vars, Floats64, StringVars, Strings, DurationVars, Durations, Parse, Parsed
