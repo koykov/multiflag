@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"time"
 )
 
 type MultiFlag struct {
@@ -25,7 +26,31 @@ func (f *MultiFlag) BoolVars(p *bool, names []string, value bool, usage string) 
 	f.var_(p, names, value, usage)
 }
 
+func (f *MultiFlag) IntVars(p *int, names []string, value int, usage string) {
+	f.var_(p, names, value, usage)
+}
+
+func (f *MultiFlag) Int64Vars(p *int64, names []string, value int64, usage string) {
+	f.var_(p, names, value, usage)
+}
+
+func (f *MultiFlag) UintVars(p *uint, names []string, value uint, usage string) {
+	f.var_(p, names, value, usage)
+}
+
+func (f *MultiFlag) Uint64Vars(p *uint64, names []string, value uint64, usage string) {
+	f.var_(p, names, value, usage)
+}
+
+func (f *MultiFlag) Float64Vars(p *float64, names []string, value float64, usage string) {
+	f.var_(p, names, value, usage)
+}
+
 func (f *MultiFlag) StringVars(p *string, names []string, value string, usage string) {
+	f.var_(p, names, value, usage)
+}
+
+func (f *MultiFlag) DurationVars(p *time.Duration, names []string, value time.Duration, usage string) {
 	f.var_(p, names, value, usage)
 }
 
@@ -86,8 +111,20 @@ func (f *MultiFlag) var_(p any, names []string, value any, usage string) {
 			switch value.(type) {
 			case bool:
 				f.fs().BoolVar(p.(*bool), names[i], value.(bool), usage)
+			case int:
+				f.fs().IntVar(p.(*int), names[i], value.(int), usage)
+			case int64:
+				f.fs().Int64Var(p.(*int64), names[i], value.(int64), usage)
+			case uint:
+				f.fs().UintVar(p.(*uint), names[i], value.(uint), usage)
+			case uint64:
+				f.fs().Uint64Var(p.(*uint64), names[i], value.(uint64), usage)
+			case float64:
+				f.fs().Float64Var(p.(*float64), names[i], value.(float64), usage)
 			case string:
 				f.fs().StringVar(p.(*string), names[i], value.(string), usage)
+			case time.Duration:
+				f.fs().DurationVar(p.(*time.Duration), names[i], value.(time.Duration), usage)
 			}
 			f.alias[key] = append(f.alias[key], names[i])
 		}
