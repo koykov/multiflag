@@ -92,9 +92,8 @@ func (f *MultiFlag) Func(name, usage string, fn func(string) error)  { f.fs().Fu
 func (f *MultiFlag) Var(value flag.Value, name string, usage string) { f.fs().Var(value, name, usage) }
 func (f *MultiFlag) Parse(arguments []string) error                  { return f.fs().Parse(arguments) }
 func (f *MultiFlag) Parsed() bool                                    { return f.fs().Parsed() }
+func (f *MultiFlag) Usage()                                          { f.s.Usage() }
 
 func (f *MultiFlag) Init(name string, errorHandling flag.ErrorHandling) {
 	f.fs().Init(name, errorHandling)
 }
-
-func (f *MultiFlag) Usage() { f.s.Usage() }
