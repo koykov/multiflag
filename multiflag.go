@@ -22,83 +22,83 @@ func NewMultiFlag(name string, errorHandling flag.ErrorHandling) *MultiFlag {
 	return &f
 }
 
-func (f *MultiFlag) BoolVars(p *bool, names []string, value bool, usage string) {
+func (f *MultiFlag) BoolsVar(p *bool, names []string, value bool, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Bools(names []string, value bool, usage string) *bool {
 	p := new(bool)
-	f.BoolVars(p, names, value, usage)
+	f.BoolsVar(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) IntVars(p *int, names []string, value int, usage string) {
+func (f *MultiFlag) IntsVar(p *int, names []string, value int, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Ints(names []string, value int, usage string) *int {
 	p := new(int)
-	f.IntVars(p, names, value, usage)
+	f.IntsVar(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) Int64Vars(p *int64, names []string, value int64, usage string) {
+func (f *MultiFlag) Ints64Var(p *int64, names []string, value int64, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Ints64(names []string, value int64, usage string) *int64 {
 	p := new(int64)
-	f.Int64Vars(p, names, value, usage)
+	f.Ints64Var(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) UintVars(p *uint, names []string, value uint, usage string) {
+func (f *MultiFlag) UintsVar(p *uint, names []string, value uint, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Uints(names []string, value uint, usage string) *uint {
 	p := new(uint)
-	f.UintVars(p, names, value, usage)
+	f.UintsVar(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) Uint64Vars(p *uint64, names []string, value uint64, usage string) {
+func (f *MultiFlag) Uints64Var(p *uint64, names []string, value uint64, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Uints64(names []string, value uint64, usage string) *uint64 {
 	p := new(uint64)
-	f.Uint64Vars(p, names, value, usage)
+	f.Uints64Var(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) Float64Vars(p *float64, names []string, value float64, usage string) {
+func (f *MultiFlag) Floats64Var(p *float64, names []string, value float64, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Floats64(names []string, value float64, usage string) *float64 {
 	p := new(float64)
-	f.Float64Vars(p, names, value, usage)
+	f.Floats64Var(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) StringVars(p *string, names []string, value string, usage string) {
+func (f *MultiFlag) StringsVar(p *string, names []string, value string, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Strings(names []string, value string, usage string) *string {
 	p := new(string)
-	f.StringVars(p, names, value, usage)
+	f.StringsVar(p, names, value, usage)
 	return p
 }
 
-func (f *MultiFlag) DurationVars(p *time.Duration, names []string, value time.Duration, usage string) {
+func (f *MultiFlag) DurationsVar(p *time.Duration, names []string, value time.Duration, usage string) {
 	f.var_(p, names, value, usage)
 }
 
 func (f *MultiFlag) Durations(names []string, value time.Duration, usage string) *time.Duration {
 	p := new(time.Duration)
-	f.DurationVars(p, names, value, usage)
+	f.DurationsVar(p, names, value, usage)
 	return p
 }
 
