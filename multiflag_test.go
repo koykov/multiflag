@@ -7,13 +7,38 @@ import (
 )
 
 func TestMultiFlag(t *testing.T) {
-	t.Run("bool var", func(t *testing.T) {
-		var b bool
-		var buf bytes.Buffer
-		ms := NewMultiFlag("", flag.ExitOnError)
-		ms.SetOutput(&buf)
-		ms.BoolVars(&b, []string{"nc", "no-cache", "nc"}, false, "Disable cache flag.")
-		ms.s.Usage()
-		println(buf.String())
-	})
+	type stage struct {
+		key    string
+		ptr    any
+		names  []string
+		value  any
+		usage  string
+		expect string
+	}
+	var stages = []stage{
+		{
+			"bool",
+			new(bool),
+			[]string{"nc", "no-cache", "nc"},
+			false,
+			"Disable cache flag.",
+			`Usage:
+  -nc, -no-cache
+    	Disable cache flag.
+`,
+		},
+	}
+	var buf bytes.Buffer
+	for _, stg := range stages {
+		t.Run(stg.key, func(t *testing.T) {
+			buf.Reset()
+			ms := NewMultiFlag("", flag.ExitOnError)
+			ms.SetOutput(&buf)
+			ms.var_(stg.ptr, stg.names, stg.value, stg.usage)
+			ms.Usage()
+			if buf.String() != stg.expect {
+				t.FailNow()
+			}
+		})
+	}
 }

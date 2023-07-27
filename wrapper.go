@@ -96,3 +96,5 @@ func (f *MultiFlag) Parsed() bool                                    { return f.
 func (f *MultiFlag) Init(name string, errorHandling flag.ErrorHandling) {
 	f.fs().Init(name, errorHandling)
 }
+
+func (f *MultiFlag) Usage() { f.s.Usage() }
